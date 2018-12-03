@@ -1,0 +1,41 @@
+INSERT INTO brewerys (id, address, city, name, open, zipcode) VALUES
+(1, 'Overtocht 43', 'Bodegraven', 'Brouwerij de Molen', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '2411BT'),
+(2, 'Weverij 5', 'Amstelveen', 'de naeckte brouwers', '[Wednesday]', '1185 ZE'),
+(3, 'Gedempte Voldersgracht 2', 'Haarlem', 'Jopen', '["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]', '2011WB'),
+(4, 'Pratumplaats 2A', 'Utrecht (De Meern)', 'Maximus', '[ "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '3454 NA'),
+(5, 'Aelbrechtskolk 12', 'Rotterdam', 'Stadsbrouwerij De Pelgrim', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '3024 RE'),
+(6, 'Guido Gezellelaan 49', 'Mechelen, Belgium', 'Brouwerij Het Anker', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2800'),
+(7, 'Achterweg 22', 'Limmen', 'Brouwerij Dampegheest', '[ "Friday", "Saturday", "Sunday" ]', '1906 AG'),
+(8, 'Funenkade 7', 'Amsterdam', 'Brouwerij ''t IJ', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '1018 AL'),
+(9, 'Flevoweg 35a', 'Leiden', 'Leidsch Bier', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2318 BX'),
+(10, 'Schilderweg 214', 'Oudeschild', 'Texelse Bierbrouwerij', '[ "Thursday", "Friday", "Saturday" ]', '1792 CK'),
+(11, 'Schoolstraat 77', 'Vleuten', 'Speciaalbierbrouwerij Duits & Lauret', '[ "Monday", "Tuesday", "Wednesday" ]', '3451 AC'),
+(12, 'Maar 2', 'Jabeek', 'Dorpsbrouwerij de Maar', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '6454 AM'),
+(13, 'Singelstraat 5', 'Goes', 'Emelisse', '[ "Friday", "Saturday", "Sunday" ]', '4461 HZ');
+
+
+
+INSERT INTO beers (id, alcohol, brewery_id, keg, name, style, volume)VALUES
+(1, 6.8 , 2, 'Alumasc','ZONNEGLOED', 'Saison',20 ),
+(2,6.5,8, 'Alumasc','Natte', 'Dubbel',20 ),
+(3,9 ,6 , 'Alumasc','Gouden Carolus', 'Tripel',20 ),
+(4,6 ,4 , 'KeyKeg','Highhops', 'IPA',20 ),
+(5,8 ,2 , 'Alumasc','Naeckte non', 'Dubbel',20 ),
+(6,8.5 ,10 , 'Sankey','Tripel', 'Tripel',20 ),
+(7,5 ,5 , 'Alumasc','Stoombier', 'Pils',20 ),
+(8,6.5 ,3 , 'Sankey','Mooie Nel IPA', 'IPA',20 ),
+(9,7.3 ,5 , 'KeyKeg','Mayflower', 'Tripel',20 ),
+(10,7 ,8 , 'Alumasc','I.P.A.', 'IPA',20 ),
+(11,8.4 ,1 , 'Sankey','Bloed, Zweet & Tranen', 'Stout',20 ),
+(12,7.5 ,2 , 'Alumasc','Feeks', 'Blond',20 ),
+(13,6 ,10 , 'Sankey','Skuumkoppe', 'Witbier',20 ),
+(14, 6, 4, 'KeyKeg','Brutus', 'Lager',20 ),
+(15,6.2 ,6 , 'Alumasc','Leidsch Aaipiejee', 'IPA',20 ),
+(16,5.5 ,3 , 'Sankey','Extra Stout', 'Stout',10 ),
+(17,7.7 ,1 , 'Sankey','Dag & Dauw', 'Stout',10 ),
+(18,6.5 ,9 , 'Alumasc','Leidsch Blond', 'Blond',20 ),
+(19,7.6 ,7 , 'KeyKeg','Skoftig', 'Dubbel',20 ),
+(20,8 ,8 , 'Alumasc','Zatte', 'Tripel',20 ),
+(21, 6.2,6 , 'Alumasc','Maneblusser', 'Blond',20 ),
+(22,10 ,13 , 'KeyKeg','T.I.P.A.', 'IPA',20 ),
+(23,7.5 ,13 , 'KeyKeg','Dubbel', 'Dubbel',20 );
