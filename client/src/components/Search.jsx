@@ -1,13 +1,4 @@
-import React from 'react'
-import { ReactLeafletSearch } from 'react-leaflet-search'
-
-
-const Search = (props) => (
-  props &&
-  <ReactLeafletSearch position="topleft" />
-)
-
-export default Search
+// import React from 'react'
 
 
 
