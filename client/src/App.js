@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import MapContainer from './components/MapContainer'
 
 class App extends Component {
