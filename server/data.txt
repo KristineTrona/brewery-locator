@@ -1,17 +1,17 @@
-INSERT INTO brewerys (id, address, city, name, open, zipcode) VALUES
-(1, 'Overtocht 43', 'Bodegraven', 'Brouwerij de Molen', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '2411BT'),
-(2, 'Weverij 5', 'Amstelveen', 'de naeckte brouwers', '[Wednesday]', '1185 ZE'),
-(3, 'Gedempte Voldersgracht 2', 'Haarlem', 'Jopen', '["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]', '2011WB'),
-(4, 'Pratumplaats 2A', 'Utrecht (De Meern)', 'Maximus', '[ "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '3454 NA'),
-(5, 'Aelbrechtskolk 12', 'Rotterdam', 'Stadsbrouwerij De Pelgrim', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '3024 RE'),
-(6, 'Guido Gezellelaan 49', 'Mechelen, Belgium', 'Brouwerij Het Anker', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2800'),
-(7, 'Achterweg 22', 'Limmen', 'Brouwerij Dampegheest', '[ "Friday", "Saturday", "Sunday" ]', '1906 AG'),
-(8, 'Funenkade 7', 'Amsterdam', 'Brouwerij ''t IJ', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '1018 AL'),
-(9, 'Flevoweg 35a', 'Leiden', 'Leidsch Bier', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2318 BX'),
-(10, 'Schilderweg 214', 'Oudeschild', 'Texelse Bierbrouwerij', '[ "Thursday", "Friday", "Saturday" ]', '1792 CK'),
-(11, 'Schoolstraat 77', 'Vleuten', 'Speciaalbierbrouwerij Duits & Lauret', '[ "Monday", "Tuesday", "Wednesday" ]', '3451 AC'),
-(12, 'Maar 2', 'Jabeek', 'Dorpsbrouwerij de Maar', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '6454 AM'),
-(13, 'Singelstraat 5', 'Goes', 'Emelisse', '[ "Friday", "Saturday", "Sunday" ]', '4461 HZ');
+INSERT INTO brewerys (id, address, city, name, open, zipcode, lat, lng) VALUES
+(1, 'Overtocht 43', 'Bodegraven', 'Brouwerij de Molen', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '2411BT', 52.085180, 4.742860),
+(2, 'Weverij 5', 'Amstelveen', 'de naeckte brouwers', '[Wednesday]', '1185 ZE', 52.290100, 4.840750),
+(3, 'Gedempte Voldersgracht 2', 'Haarlem', 'Jopen', '["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]', '2011WB', 4.629940 ,4.629940),
+(4, 'Pratumplaats 2A', 'Utrecht (De Meern)', 'Maximus', '[ "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ]', '3454 NA', 52.087870, 5.046260 ),
+(5, 'Aelbrechtskolk 12', 'Rotterdam', 'Stadsbrouwerij De Pelgrim', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '3024 RE', 51.908890, 4.448820),
+(6, 'Guido Gezellelaan 49', 'Mechelen, Belgium', 'Brouwerij Het Anker', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2800', 50.946819, 4.559750),
+(7, 'Achterweg 22', 'Limmen', 'Brouwerij Dampegheest', '[ "Friday", "Saturday", "Sunday" ]', '1906 AG', 52.567310, 4.699130),
+(8, 'Funenkade 7', 'Amsterdam', 'Brouwerij ''t IJ', '[ "Tuesday", "Wednesday", "Thursday", "Friday" ]', '1018 AL', 52.366940 , 4.925840),
+(9, 'Flevoweg 35a', 'Leiden', 'Leidsch Bier', '[ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ]', '2318 BX', 52.174910, 4.496300),
+(10, 'Schilderweg 214', 'Oudeschild', 'Texelse Bierbrouwerij', '[ "Thursday", "Friday", "Saturday" ]', '1792 CK', 53.043460, 4.833390),
+(11, 'Schoolstraat 77', 'Vleuten', 'Speciaalbierbrouwerij Duits & Lauret', '[ "Monday", "Tuesday", "Wednesday" ]', '3451 AC', 52.109240, 5.013310),
+(12, 'Maar 2', 'Jabeek', 'Dorpsbrouwerij de Maar', '[ "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]', '6454 AM', 50.981210, 5.942940),
+(13, 'Singelstraat 5', 'Goes', 'Emelisse', '[ "Friday", "Saturday", "Sunday" ]', '4461 HZ', 51.503420, 3.890090);
 
 
 

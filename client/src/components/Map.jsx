@@ -3,15 +3,16 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-// import * as ELG from 'esri-leaflet-geocoder';
+import {connect} from 'react-redux'
+import {getBreweries} from '../actions/breweries'
 
-export default class BeerMap extends Component{
-
+class BeerMap extends Component{
+  
   state = {
-    lat: 52.3,
-    lng: 4.8,
-    zoom: 8,
-  }
+      lat: 52.3,
+      lng: 4.8,
+      zoom: 9,
+    }
 
   mapRef = createRef();
 
@@ -19,30 +20,34 @@ export default class BeerMap extends Component{
     console.log("test")
   }
 
+  provider = new OpenStreetMapProvider()
+
+  searchControl = new GeoSearchControl({
+    provider: this.provider,
+    showMarker: true,
+    marker: { 
+      icon: new L.Icon({
+        iconUrl: require('../assets/beer-icon.png'),
+        iconSize: [30, 45],
+        popupAnchor: [-3, -15],
+      }),
+      draggable: false,
+    },
+    animateZoom: true,
+    autoClose: true,                                   
+    searchLabel: 'Enter address'
+  })
+
 
 	componentDidMount() {
 
+    this.props.getBreweries()
+
     const map = this.mapRef.current.leafletElement;
-
-    const provider = new OpenStreetMapProvider()
-
-    const searchControl = new GeoSearchControl({
-      provider: provider,
-      showMarker: true,
-      marker: { 
-        icon: new L.Icon.Default(),
-        draggable: false,
-      },
-      animateZoom: true,
-      autoClose: true,                                   
-      searchLabel: 'Enter address'
-    })
-
-    map.addControl(searchControl);
+    map.addControl(this.searchControl);
     map.on('geosearch/showlocation', this.findLocation)
-  }
 
-  
+  }  
 
   render(){
 
@@ -50,9 +55,8 @@ export default class BeerMap extends Component{
 
     const beer = L.icon({
       iconUrl: require('../assets/beer-icon.png'),
-      iconSize: [30, 45],
-      iconAnchor: [12, 22],
-      popupAnchor: [-3, -76],
+      iconSize: [40, 40],
+      popupAnchor: [-3, -15],
     })
 
     const map = (
@@ -61,13 +65,22 @@ export default class BeerMap extends Component{
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
-        <Marker position={position} icon={beer}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+
+        {this.props.breweries && this.props.breweries.length > 0 &&
+          this.props.breweries.map(brewery =>
+            <Marker position={[brewery.lat, brewery.lng]} icon={beer} key={brewery.id}>
+              <Popup>
+                <strong>{brewery.name}</strong>
+                <hr/>
+                {brewery.address} {brewery.zipcode}, {brewery.city}
+              </Popup>
+            </Marker>
+          )
+        }
       </Map>
     )
+
+    
     return (
       map
     )
@@ -75,16 +88,24 @@ export default class BeerMap extends Component{
 }
 
 
+const mapStateToProps = (state) => {
+  return {
+   breweries: state.breweries
+  }
+}
+  
+const mapDispatchToProps = {
+  getBreweries
+}
 
-  //   const map = this.mapRef.current.leafletElement;
-    
+export default connect(mapStateToProps, mapDispatchToProps)(BeerMap)
 
-	// 	const searchControl = new ELG.Geosearch().addTo(map);
-	// 	const results = new L.LayerGroup().addTo(map);
-		  
-	// 	searchControl.on('results', function(data){
-	// 		results.clearLayers();
-	// 		for (let i = data.results.length - 1; i >= 0; i--) {
-	// 			results.addLayer(L.marker(data.results[i].latlng));
-	// 		}
-  //   })
+
+    // if( this.props.breweries && this.props.breweries.length > 0){
+
+    //   this.props.breweries.map(brewery =>        
+    //     this.provider.search({ query: `${brewery.zipcode.trim()}`})
+    //     .then(function(result) {
+    //       console.log(result)
+    //     })
+    // )}
