@@ -16,18 +16,11 @@ class BeerMap extends Component{
       selectedBrewery: null,
       currentLocation: null
     }
-
+  
+  // Create reference to the map:
   mapRef = createRef();
 
-  
-
-  findLocation = () => {
-    this.setState({zoom: 12})
-
-    let result = this.searchControl.resultList.results[0]
-    this.setState({currentLocation: [parseFloat(result.y), parseFloat(result.x)]})
-  }
-  
+  // Creating search option for the map:
 
   provider = new OpenStreetMapProvider()
 
@@ -42,19 +35,38 @@ class BeerMap extends Component{
 
 	componentDidMount() {
 
+    // Loads the list of breweries from the database:
+
     this.props.getBreweries()
+
+    // Adds search box to the map and on selecting a location calls 
+    // a function - findLocation():
 
     const map = this.mapRef.current.leafletElement;
     map.addControl(this.searchControl);
     map.on('geosearch/showlocation', this.findLocation)
   }
 
+
+  findLocation = () => {
+    // Once a location is selected, the map is zoomed in:
+    this.setState({zoom: 12})
+
+    // selects the chosen location and sets the 
+    // currentLocation value in the state to the corrdinates of this location:
+
+    let result = this.searchControl.resultList.results[0]
+    this.setState({currentLocation: [parseFloat(result.y), parseFloat(result.x)]})
+  }
+
+  // Once a user clicks on a brewery, puts the selected brewery's id in the state:
+
   selectBrewery = (breweryId) => {
     this.setState({selectedBrewery: breweryId})
   }
 
   render(){
-
+    //Initial position for the map:
     const position = [this.state.lat, this.state.lng]
 
     const beer = L.icon({
@@ -78,6 +90,8 @@ class BeerMap extends Component{
           attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         />
 
+        {/* Once the breweries are loaded in the redux store from the database
+           markers are created for each of their locations: */}
         {this.props.breweries && this.props.breweries.length > 0 &&
           this.props.breweries.map(brewery =>
             <Marker position={[brewery.lat, brewery.lng]} icon={beer} key={brewery.id}>
@@ -94,12 +108,16 @@ class BeerMap extends Component{
             </Marker>
           )
         } 
-        { 
-          this.state.currentLocation &&
+
+        {/* Once a user has entered a location, sets a marker for their chosen location: */}
+
+        { this.state.currentLocation &&
           <Marker position={this.state.currentLocation} icon={location} >
           </Marker>
         }
         </Map>
+
+        {/* Once a user clicks on a brewery, a modal with a list of beers from that brewery is shown: */}
         <BeersModal selectedBrewery={this.props.breweries.find(brewery => brewery.id === this.state.selectedBrewery)}/>
       </div>
     )

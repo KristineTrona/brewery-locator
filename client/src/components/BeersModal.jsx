@@ -13,14 +13,18 @@ export const BeersModal = (props) =>{
             <button className="close" data-dismiss="modal">&times;</button>
           </div>
           <div className="modal-body">
-            {
-              props.selectedBrewery && props.selectedBrewery.beers.length > 0 &&
+
+            {/* If the database contains information about beers at this brewery show a list of beers: */}
+            
+            {props.selectedBrewery && props.selectedBrewery.beers.length > 0 &&
               <ul> {props.selectedBrewery.beers.map(beer => 
                 <li key={beer.id}>{beer.name} -  {beer.alcohol}%, {beer.style}</li>)}
               </ul>
             }
-            {
-              props.selectedBrewery && props.selectedBrewery.beers.length === 0 &&
+            
+            {/* If there are no beers connected to this brewery, show the following: */}
+
+            {props.selectedBrewery && props.selectedBrewery.beers.length === 0 &&
               <div>
                 Sorry, we do not have any information about the beers at this brewery
               </div>
