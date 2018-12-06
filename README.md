@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a simple Brewery Locator app built with Typescript, Koa server, routing controllers, TypeORM and PostgreSQL in the backend and React with Redux in the frontend. The map is built with Leaflet, React Leaflet and Leaflet-Geosearch libraries.
+This is a simple full-stacl app , which allows a user to enter his/her location and find nearby breweries. The app is built with Typescript, Koa server, routing controllers, TypeORM and PostgreSQL in the backend and React with Redux in the frontend. The map functionality is built with Leaflet, React Leaflet and Leaflet-Geosearch libraries.
 
 ## Prerequisits
 
