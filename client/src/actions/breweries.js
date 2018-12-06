@@ -10,9 +10,11 @@ const loadBreweries = (breweries) => ({
   payload: breweries.breweries
 })
 
+
 export const getBreweries = () => (dispatch) => {
   request
     .get(`${baseUrl}/breweries`)
     .then(result => dispatch(loadBreweries(result.body)))
     .catch(err => console.error(err))
 }
+

@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
-import { IsString} from '../../node_modules/class-validator';
+import { IsString, IsNumber} from '../../node_modules/class-validator';
 import Beer from '../beers/entity'
 
 @Entity()
@@ -23,6 +23,14 @@ export default class Brewery extends BaseEntity {
   @IsString()
   @Column('text')
   zipcode: string
+
+  @IsNumber()
+  @Column('decimal')
+  lat: number
+
+  @IsNumber()
+  @Column('decimal')
+  lng: number
 
   @IsString()
   @Column('simple-array')
