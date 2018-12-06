@@ -5,6 +5,7 @@ import L from 'leaflet'
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import {connect} from 'react-redux'
 import {getBreweries} from '../actions/breweries'
+import {BeersModal} from './BeersModal'
 
 class BeerMap extends Component{
   
@@ -12,12 +13,13 @@ class BeerMap extends Component{
       lat: 52.3,
       lng: 4.8,
       zoom: 9,
+      selectedBrewery: null,
     }
 
   mapRef = createRef();
 
   findLocation = () => {
-    console.log("test")
+    this.setState({zoom: 12})
   }
 
   provider = new OpenStreetMapProvider()
@@ -26,11 +28,7 @@ class BeerMap extends Component{
     provider: this.provider,
     showMarker: true,
     marker: { 
-      icon: new L.Icon({
-        iconUrl: require('../assets/beer-icon.png'),
-        iconSize: [30, 45],
-        popupAnchor: [-3, -15],
-      }),
+      icon: new L.Icon.Default(),
       draggable: false,
     },
     animateZoom: true,
@@ -47,7 +45,11 @@ class BeerMap extends Component{
     map.addControl(this.searchControl);
     map.on('geosearch/showlocation', this.findLocation)
 
-  }  
+  }
+
+  selectBrewery = (breweryId) => {
+    this.setState({selectedBrewery: breweryId})
+  }
 
   render(){
 
@@ -59,8 +61,9 @@ class BeerMap extends Component{
       popupAnchor: [-3, -15],
     })
 
-    const map = (
-      <Map className="map" center={position} zoom={this.state.zoom} ref={this.mapRef}>
+    return (
+      <div>
+        <Map className="map" center={position} zoom={this.state.zoom} ref={this.mapRef}>
         <TileLayer
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
@@ -73,16 +76,18 @@ class BeerMap extends Component{
                 <strong>{brewery.name}</strong>
                 <hr/>
                 {brewery.address} {brewery.zipcode}, {brewery.city}
+                <hr/>
+                <button className="btn btn-primary btn-sm" onClick={() => this.selectBrewery(brewery.id)} 
+                  data-toggle="modal" data-target="#beersModal">
+                  See Beer List
+                </button>
               </Popup>
             </Marker>
           )
         }
-      </Map>
-    )
-
-    
-    return (
-      map
+        </Map>
+        <BeersModal selectedBrewery={this.props.breweries.find(brewery => brewery.id === this.state.selectedBrewery)}/>
+      </div>
     )
   }
 }
