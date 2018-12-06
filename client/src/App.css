@@ -1,17 +1,30 @@
 .App{
-  padding-top: 50px;
+  padding-top: 30px;
+  min-height: 100vh;
+  background: burlywood;
 }
 
 .map {
   height: 500px;
-  width: 90%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   font-family: 'Lato', sans-serif;
-  border: 2px solid #bcc3c5;
+  border: 2px solid black;
 }
 
-.location-search-form{
-  max-width: 400px;
+@media(min-width: 700px){
+  .map{
+    width: 60%;
+  }
+}
+
+@media(max-width: 699px){
+  .map{
+    width: 90%;
+  }
+}
+
+.map-title{
+  font-family: 'Bungee', cursive;
 }

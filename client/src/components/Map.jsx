@@ -14,23 +14,26 @@ class BeerMap extends Component{
       lng: 4.8,
       zoom: 9,
       selectedBrewery: null,
+      currentLocation: null
     }
 
   mapRef = createRef();
 
+  
+
   findLocation = () => {
     this.setState({zoom: 12})
+
+    let result = this.searchControl.resultList.results[0]
+    this.setState({currentLocation: [parseFloat(result.y), parseFloat(result.x)]})
   }
+  
 
   provider = new OpenStreetMapProvider()
 
   searchControl = new GeoSearchControl({
     provider: this.provider,
-    showMarker: true,
-    marker: { 
-      icon: new L.Icon.Default(),
-      draggable: false,
-    },
+    showMarker: false,
     animateZoom: true,
     autoClose: true,                                   
     searchLabel: 'Enter address'
@@ -44,7 +47,6 @@ class BeerMap extends Component{
     const map = this.mapRef.current.leafletElement;
     map.addControl(this.searchControl);
     map.on('geosearch/showlocation', this.findLocation)
-
   }
 
   selectBrewery = (breweryId) => {
@@ -61,8 +63,15 @@ class BeerMap extends Component{
       popupAnchor: [-3, -15],
     })
 
+    const location = L.icon({
+      iconUrl: require('../assets/location-image.png'),
+      iconSize: [40, 40],
+      popupAnchor: [-3, -15],
+    })  
+
     return (
       <div>
+        <h2 className="map-title text-center"> Brewery Locator:</h2>
         <Map className="map" center={position} zoom={this.state.zoom} ref={this.mapRef}>
         <TileLayer
           url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'
@@ -84,6 +93,11 @@ class BeerMap extends Component{
               </Popup>
             </Marker>
           )
+        } 
+        { 
+          this.state.currentLocation &&
+          <Marker position={this.state.currentLocation} icon={location} >
+          </Marker>
         }
         </Map>
         <BeersModal selectedBrewery={this.props.breweries.find(brewery => brewery.id === this.state.selectedBrewery)}/>
